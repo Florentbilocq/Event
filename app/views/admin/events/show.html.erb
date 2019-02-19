@@ -1,0 +1,78 @@
+<div class="card m-2">
+  <div class="d-flex flex-column align-items-center">
+    <p></p>
+    <%if @event.event_image.attached?%>
+      <%= image_tag @event.event_image, alt: 'event_image',  class: "card-img-top p-2" %>
+    <%else%>
+      <p>=== Il n'y a pas encore d'event_image lié à cet événement ===</p>
+    <%end%>
+    <p></p>
+  </div>
+  <div class="card-body m-0 p-0">
+    <h5 class="card-title text-center p-2"><%=@event.title%></h5>
+    <hr> 
+    <p class="card-text text-center"><%= @event.description %></p>
+    <p class="card-text">
+      <table class="table table-bordered">
+        <tbody>
+          <tr>
+            <th scope="row">Durée</th>
+            <td><%= @event.duration %> min</td>
+          </tr>
+          <tr>
+            <th scope="row">Date</th>
+            <td><%= @event.start_date %></td>
+          </tr>
+          <tr>
+            <th scope="row">Prix</th>
+            <td>  <%= @event.price %> €</td>
+          </tr>
+          <tr>
+            <th scope="row">Lieu</th>
+            <td> <%= @event.location %></td>
+          </tr>
+
+        </tbody>
+      </table>
+    </p>
+  </div>
+  <div class="card-footer">Administrator : <%= @event.administrator.name %></div>
+</div>
+
+
+<h3>Liste de tous les participants : </h3>
+<br>
+<table class="table table-bordered">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Prénom</th>
+      <th scope="col">Nom</th>
+      <th scope="col">email</th>
+      <th scope="col">Description</th>
+      <th scope="col">Admin</th>
+      <th scope="col" colspan="1"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @participants.each do |participant| %>
+      <tr>
+        <td><%= participant.first_name %></td>
+        <td><%= participant.last_name %></td>
+        <td><%= participant.email %></td>
+        <td><%= participant.description %></td>
+        <td><%= participant.is_admin %></td>
+        <td><%= link_to 'Show', admin_user_path(participant) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br>
+
+
+<div class="d-flex justify-content-around">
+  <%= link_to 'Back', admin_events_path, class: "btn btn-outline-dark"  %>
+  <%= link_to 'Edit', edit_admin_event_path(@event), class: "btn btn-outline-dark" %>
+  <%= link_to 'Destroy', admin_event_path(@event), :method => 'delete', data: { confirm: 'Are you sure?' }, class: "btn btn-outline-dark" %>
+</div>
+

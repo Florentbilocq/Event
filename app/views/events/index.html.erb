@@ -1,0 +1,12 @@
+<%= render 'events/carousel' %>
+<br>
+<div class="container">
+  <h1 class="text-center">Events</h1>
+  <br>    
+  <div class="d-flex flex-wrap justify-content-center">
+    <% @events.each do |event| %>
+        <%= render 'events/event', event: event %>
+      <% end %>
+
+  </div>
+</div>
