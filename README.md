@@ -15,4 +15,4 @@ et c'est bon, vous pouvez vérifier dans yopmail en recherchant 'user1' 'user2',
 page bootswatch: https://bootswatch.com/united/
 
 # INFO
-Par Greg Dalmasso
+Par Greg Dalmasso et Florent Bilocq
